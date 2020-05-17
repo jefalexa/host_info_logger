@@ -1,0 +1,12 @@
+[Unit]
+Description=Reads the serial controller input and logs the data
+After=network.target auditd.service
+
+[Service]
+ExecStart=/home/pi/host_info_logger/ip_logger.py
+KillMode=process
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+

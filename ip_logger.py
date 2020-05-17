@@ -11,7 +11,7 @@ import google.cloud.logging
 # Setup Logging
 # ------------------
 
-auth_file = 'keys/homelab-266121-2389cbbb58c3.json'
+auth_file = '/home/pi/host_info_logger/keys/homelab-266121-2389cbbb58c3.json'
 client = google.cloud.logging.Client.from_service_account_json(auth_file)
 client.setup_logging()
 
