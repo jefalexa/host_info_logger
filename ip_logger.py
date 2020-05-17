@@ -27,9 +27,18 @@ info_changed = 0
 
 while True:    
     # Get Host Info
-    ip_address_public = requests.get("https://api.myip.com").json()['ip']
-    hostname = socket.gethostname()
-    ip_address_local = socket.gethostbyname(hostname)
+    try:
+	    ip_address_public = requests.get("https://api.myip.com").json()['ip']
+	except:
+		ip_address_public = ""
+    try:
+	    hostname = socket.gethostname()
+	except:
+		hostname = ""
+    try:
+	    ip_address_local = socket.gethostbyname(hostname)
+	except:
+		ip_address_local = ""
 
     # Check to see if anything has changed since the last run
     if ip_address_public != ip_address_public_backup:
