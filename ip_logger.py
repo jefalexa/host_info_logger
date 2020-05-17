@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 # Imports the Google Cloud client library
 import logging
 import time
