@@ -24,6 +24,7 @@ ip_address_public_backup = ""
 hostname_backup = ""
 ip_address_local_backup = ""
 info_changed = 0
+run_count = 0
 
 while True:    
     # Get Host Info
@@ -56,7 +57,14 @@ while True:
         hostname_backup = hostname
         ip_address_local_backup = ip_address_local
         info_changed = 0
+    elif run_count == 10:
+        print("Logging keepalive")
+        logging.log(msg="{{Hostname:{}, Global_IP_Address:{}, Local_IP_Address:{}}}".format(hostname, ip_address_public, ip_address_local), level=logging.INFO)
+        ip_address_public_backup = ip_address_public
+        hostname_backup = hostname
+        ip_address_local_backup = ip_address_local
+        run_count = 0
     else:
         print("No changes to log")
-
-    time.sleep(30)    
+    run_count += 1
+    time.sleep(30)
