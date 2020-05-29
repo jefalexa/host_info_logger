@@ -20,6 +20,18 @@ client.setup_logging()
 # Run Script
 # ------------------
 
+def get_ip():
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    try:
+        # doesn't even have to be reachable
+        s.connect(('10.255.255.255', 1))
+        IP = s.getsockname()[0]
+    except:
+        IP = '127.0.0.1'
+    finally:
+        s.close()
+    return(IP)
+
 ip_address_public_backup = ""
 hostname_backup = ""
 ip_address_local_backup = ""
@@ -37,7 +49,7 @@ while True:
     except:
         hostname = ""
     try:
-        ip_address_local = socket.gethostbyname(hostname)
+        ip_address_local = get_ip()
     except:
         ip_address_local = ""
 
